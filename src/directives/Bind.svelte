@@ -15,7 +15,7 @@
 
   $: {
     /* @ts-ignore */
-    if (key === 'style') (<HTMLElement>element).style[<StyleKey>name] = value;
+    if (key === 'style') element.style[name] = value;
     else if (key === 'class') element.classList[value ? 'add' : 'remove'](name);
     else element.setAttribute(key, value);
   }
