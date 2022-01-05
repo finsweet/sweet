@@ -5,16 +5,12 @@
   import Bind from '../directives/Bind.svelte';
 
   let count = 0;
-
-  $: warningClassActive = count < 0;
-  $: validClassActive = count > 0;
-  $: displayCount = count > -5;
 </script>
 
-{#if displayCount}
+{#if count > -5}
   <Element name="count">
-    <Bind key="class" name="warning" value={warningClassActive} />
-    <Bind key="class" name="valid" value={validClassActive} />
+    <Bind key="class" name="warning" value={count < 0} />
+    <Bind key="class" name="valid" value={count > 0} />
     <Bind key="test" value="prova" />
     <Text value={count} />
   </Element>
