@@ -1,11 +1,11 @@
 <script lang="ts" context="module">
-  import { CLOAK_DATASET, ELEMENT_CONTEXT, ELEMENT_DATASET } from '../utils/constants';
+  import { CLOAK_ATTRIBUTE, ELEMENT_CONTEXT, ELEMENT_ATTRIBUTE } from '../utils/constants';
 
   let renderedElements: { e: Element; o?: Element }[] = [];
 
-  const elements = document.querySelectorAll(`[${ELEMENT_DATASET}]`);
+  const elements = document.querySelectorAll(`[${ELEMENT_ATTRIBUTE}]`);
 
-  for (const element of elements) element.setAttribute(CLOAK_DATASET, '');
+  for (const element of elements) element.setAttribute(CLOAK_ATTRIBUTE, '');
 </script>
 
 <script lang="ts">
@@ -13,7 +13,7 @@
 
   export let name: string;
 
-  const selector = `[${ELEMENT_DATASET}='${name}']`;
+  const selector = `[${ELEMENT_ATTRIBUTE}='${name}']`;
   const original = document.querySelector(selector);
   const index = renderedElements.filter(({ o }) => o === original).length;
 
@@ -35,12 +35,11 @@
 
   setContext(ELEMENT_CONTEXT, element);
   onMount(() => {
-    element.removeAttribute(CLOAK_DATASET);
-    console.log(this);
+    element.removeAttribute(CLOAK_ATTRIBUTE);
   });
   onDestroy(() => {
     if (index) element.remove();
-    else element.setAttribute(CLOAK_DATASET, '');
+    else element.setAttribute(CLOAK_ATTRIBUTE, '');
 
     renderedElements = renderedElements.filter(({ e }) => e !== element);
   });

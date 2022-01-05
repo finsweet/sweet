@@ -14,7 +14,7 @@
     <link href="/images/webclip.png" rel="apple-touch-icon" />
     <script defer src="/build/bundle.js"></script>
     <style>
-      [data-cloak] {
+      [s-cloak] {
         display: none;
       }
     </style>
@@ -23,18 +23,17 @@
     <div class="section">
       <div class="container">
         <!-- List -->
-        <h2>List</h2>
-        <p data-element="item" data-cloak="data-cloak">--</p>
-        <a data-element="add-item" href="#" class="button w-button">Add Item</a>
-        <a data-element="remove-item" href="#" class="w-button">Remove Item</a>
-        <p data-cloak="data-cloak" data-element="clicked-item">--</p>
+        <h2 s-element="item-title">List</h2>
+        <p s-element="item" s-cloak="s-cloak">--</p>
+        <a s-element="add-item" href="#" class="button w-button">Add Item</a>
+        <a s-element="remove-item" href="#" class="w-button">Remove Item</a>
 
         <!-- Counter -->
         <h2>Count</h2>
-        <p data-cloak="data-cloak" data-element="count">--</p>
-        <p data-cloak="data-cloak" data-element="count-fallback">This is a fallback element</p>
-        <a data-element="count-decrease" v-on:click="dec" href="#" class="button w-button">Component Count Decrease</a>
-        <a data-element="count-increase" v-on:click="inc" href="#" class="w-button">Component Count Increase</a>
+        <p s-cloak="s-cloak" s-element="count">--</p>
+        <p s-cloak="s-cloak" s-element="count-fallback">This is a fallback element</p>
+        <a s-element="count-decrease" v-on:click="dec" href="#" class="button w-button">Component Count Decrease</a>
+        <a s-element="count-increase" v-on:click="inc" href="#" class="w-button">Component Count Increase</a>
       </div>
     </div>
     <script
