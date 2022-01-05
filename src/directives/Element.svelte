@@ -10,6 +10,7 @@
 
 <script lang="ts">
   import { onDestroy, onMount, setContext } from 'svelte';
+  import Debugger from '../components/Debugger.svelte';
 
   export let name: string;
 
@@ -18,6 +19,7 @@
   const index = renderedElements.filter(({ o }) => o === original).length;
 
   let element: Element;
+  let error: string | undefined;
 
   if (!index) element = original;
   else {
@@ -34,9 +36,15 @@
   renderedElements.push({ e: element, o: original });
 
   setContext(ELEMENT_CONTEXT, element);
+
   onMount(() => {
-    element.removeAttribute(CLOAK_ATTRIBUTE);
+    try {
+      element.removeAttribute(CLOAK_ATTRIBUTE);
+    } catch (e) {
+      error = `The element ${selector} doesn't exist.`;
+    }
   });
+
   onDestroy(() => {
     if (index) element.remove();
     else element.setAttribute(CLOAK_ATTRIBUTE, '');
@@ -45,4 +53,8 @@
   });
 </script>
 
-<slot {element} />
+{#if element}
+  <slot {element} />
+{:else}
+  <Debugger {error} />
+{/if}
