@@ -1,10 +1,9 @@
 <script lang="ts">
   import { simulateEvent, TabsMenuElement, TABS_CSS_CLASSES } from '@finsweet/ts-utils';
-  import { onMount } from 'svelte';
-
   import { Element, Elements } from '@finsweet/sweet/src/lib';
   import { currentStepStore, totalStepsStore } from '../stores';
-  import FormField from './FormField.svelte';
+  import { onMount } from 'svelte';
+  import Field from './Field.svelte';
 
   let tabsMenu: TabsMenuElement;
 
@@ -28,6 +27,6 @@
 
 <Elements selector=".{TABS_CSS_CLASSES.tabPane}" let:index={stepIndex}>
   <Elements selector="input, select, textarea" let:index let:element>
-    <FormField {stepIndex} {index} {element} />
+    <Field {stepIndex} {index} {element} />
   </Elements>
 </Elements>
