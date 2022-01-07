@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="./css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="./css/webflow.css" rel="stylesheet" type="text/css" />
+    <link href="./css/styles.css" rel="stylesheet" type="text/css" />
+
+    <style>
+      [s-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section">
+      <div class="container">
+        <h2 s-element="item-title">List</h2>
+        <p s-element="item" s-cloak="s-cloak">--</p>
+        <button s-element="add-item" class="button w-button">Add Item</button>
+        <button s-element="remove-item" class="w-button">Remove Item</button>
+      </div>
+    </div>
+
+    <script src="./list/index.js"></script>
+  </body>
+</html>
