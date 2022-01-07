@@ -39,12 +39,9 @@
 
   setContext(ELEMENT_CONTEXT, element);
 
-  const dispatch = createEventDispatcher<{ mounted: undefined }>();
-
   onMount(() => {
     try {
       element.removeAttribute(CLOAK_ATTRIBUTE);
-      dispatch('mounted');
     } catch (e) {
       error = `The element ${selector} doesn't exist.`;
     }
