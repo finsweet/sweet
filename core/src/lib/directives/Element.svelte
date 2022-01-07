@@ -9,33 +9,31 @@
 </script>
 
 <script lang="ts">
-  import { createEventDispatcher, getContext, onDestroy, onMount, setContext } from 'svelte';
+  import { getContext, onDestroy, onMount, setContext } from 'svelte';
   import Debugger from '../components/Debugger.svelte';
 
   export let name: string | undefined = undefined;
   export let selector: string | undefined = undefined;
   export let element: Element | undefined = undefined;
 
-  const currentContext = getContext<Element>(ELEMENT_CONTEXT);
-  const original =
-    element || (currentContext || document).querySelector(selector || `[${ELEMENT_ATTRIBUTE}='${name}']`);
-  const renderedIndex = renderedElements.filter(({ o }) => o === original).length;
+  const currentContext = getContext<Element>(ELEMENT_CONTEXT) || document;
+  const originalElement = element || currentContext.querySelector(selector || `[${ELEMENT_ATTRIBUTE}='${name}']`);
+
+  const existingElements = renderedElements.filter(({ o }) => o === originalElement);
+  const existingElementsCount = existingElements.length;
 
   let error: string | undefined;
 
-  if (!renderedIndex) element = original;
+  if (!existingElementsCount) element = originalElement;
   else {
-    element = original.cloneNode(true) as Element;
+    element = originalElement.cloneNode(true) as Element;
 
-    const { parentElement } = original;
-
-    const existingElements = parentElement.querySelectorAll(selector);
-    const previousElement = existingElements[existingElements.length - 1];
+    const previousElement = existingElements[existingElementsCount - 1].e;
 
     previousElement.after(element);
   }
 
-  renderedElements.push({ e: element, o: original });
+  renderedElements.push({ e: element, o: originalElement });
 
   setContext(ELEMENT_CONTEXT, element);
 
@@ -48,7 +46,7 @@
   });
 
   onDestroy(() => {
-    if (renderedIndex) element.remove();
+    if (existingElementsCount) element.remove();
     else element.setAttribute(CLOAK_ATTRIBUTE, '');
 
     renderedElements = renderedElements.filter(({ e }) => e !== element);
