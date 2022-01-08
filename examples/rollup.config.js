@@ -83,31 +83,31 @@ const defaults = {
  * @type {import('rollup').RollupOptions[]}
  */
 const buildOptions = [
-  // {
-  //   ...defaults,
-  //   input: 'src/counter/index.ts',
-  //   output: {
-  //     sourcemap: true,
-  //     format: 'iife',
-  //     name: 'app',
-  //     file: 'public/counter/index.js',
-  //   },
-  // },
-  // {
-  //   ...defaults,
-  //   input: 'src/list/index.ts',
-  //   output: {
-  //     sourcemap: true,
-  //     format: 'iife',
-  //     name: 'app',
-  //     file: 'public/list/index.js',
-  //   },
-  // },
+  {
+    ...defaults,
+    input: 'src/counter/index.ts',
+    output: {
+      sourcemap: !production,
+      format: 'iife',
+      name: 'app',
+      file: 'public/counter/index.js',
+    },
+  },
+  {
+    ...defaults,
+    input: 'src/list/index.ts',
+    output: {
+      sourcemap: !production,
+      format: 'iife',
+      name: 'app',
+      file: 'public/list/index.js',
+    },
+  },
   {
     ...defaults,
     input: 'src/msf/index.ts',
     output: {
-      sourcemap: true,
+      sourcemap: !production,
       format: 'iife',
       name: 'app',
       file: 'public/msf/index.js',

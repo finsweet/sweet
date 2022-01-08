@@ -22,7 +22,10 @@
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": true,
-    "paths": {}
+    "paths": {
+      "@finsweet/sweet": ["core/src/lib"],
+      "@finsweet/sweet/*": ["core/src/lib/*"]
+    }
   },
   "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
 }
