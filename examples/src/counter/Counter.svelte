@@ -22,9 +22,3 @@
 <Element name="count-increase">
   <On event="click" listener={() => count++} />
 </Element>
-
-<Element name="test">
-  <Element name="test-2">
-    <Element name="test-3" />
-  </Element>
-</Element>
